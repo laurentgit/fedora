@@ -47,7 +47,7 @@ dnf install -y gstreamer1-plugins-{bad-freeworld,ugly}
 dnf install -y libdvdcss
 }
 
-add_gpu_acceleration(){
+add_amd_codecs_mesa(){
 # Install accélération vidéo
 dnf -y swap mesa-va-drivers mesa-va-drivers-freeworld
 dnf -y swap mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
@@ -81,7 +81,7 @@ update_upgrade
 firmawre_update
 add_rpmfusion
 add_codecs
-add_gpu_acceleration
+add_amd_codecs_mesa
 install_flatpak_remote
 add_mandatory_software
 add_kvm
