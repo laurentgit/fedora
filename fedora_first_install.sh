@@ -9,6 +9,13 @@
 #                               Functions                                    #
 ##############################################################################
 
+verif_user(){
+# Vérification de base pour éxécuter le script
+if [[ $EUID -ne 0 ]]; then
+   echo "Ce script doit être executer par le user root" 1>&2
+   exit 1
+fi
+}
 
 dnf_configuration(){
 # Paramétrage DNF
@@ -59,7 +66,7 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 }
 
 add_mandatory_software(){
-dnf install -y gnome-tweaks file-roller file-roller-nautilus
+dnf install -y gnome-tweaks file-roller file-roller-nautilus vim git vlc
 }
 
 add_kvm(){
@@ -75,6 +82,7 @@ dnf autoremove -y gnome-software PackageKit abrt* gnome-boxes
 #                            Main function                                   #
 ##############################################################################
 
+verif_user
 dnf_configuration
 clean_pre_install
 update_upgrade
@@ -85,6 +93,5 @@ add_amd_codecs_mesa
 install_flatpak_remote
 add_mandatory_software
 add_kvm
-
 
 
