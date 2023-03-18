@@ -78,6 +78,12 @@ clean_pre_install(){
 dnf autoremove -y gnome-software PackageKit abrt* gnome-boxes
 }
 
+google_chrome_install(){
+dnf install -y fedora-workstation-repositories
+dnf config-manager --set-enabled google-chrome
+dnf install -y google-chrome-stable
+}
+
 ##############################################################################
 #                            Main function                                   #
 ##############################################################################
@@ -93,5 +99,5 @@ add_amd_codecs_mesa
 install_flatpak_remote
 add_mandatory_software
 add_kvm
-
+google_chrome_install
 
